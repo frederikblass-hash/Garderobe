@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Farbkombinationen – Herrengarderobe</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    background: #F2F2F7;
+    color: #1C1C1E;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+
+  /* HEADER */
+  .header {
+    background: #fff;
+    border-bottom: 1px solid #E5E5EA;
+    padding: 20px 16px 14px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #8E8E93;
+    margin-bottom: 3px;
+  }
+  .header-title {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    margin-bottom: 2px;
+  }
+  .header-count {
+    font-size: 12px;
+    color: #8E8E93;
+    margin-bottom: 14px;
+  }
+
+  /* FILTER SECTION */
+  .filter-section {
+    margin-bottom: 10px;
+  }
+  .filter-category-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #8E8E93;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .filter-category-label .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    display: inline-block;
+  }
+  .filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 4px;
+  }
+  .pill {
+    padding: 5px 11px;
+    border-radius: 20px;
+    border: 1.5px solid #E5E5EA;
+    background: #fff;
+    color: #555;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+  }
+  .pill.active {
+    border-color: transparent;
+  }
+  .reset-btn {
+    font-size: 12px;
+    color: #007AFF;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    font-weight: 600;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .reset-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+
+  .divider {
+    height: 1px;
+    background: #E5E5EA;
+    margin: 8px 0;
+  }
+
+  /* CARDS */
+  .cards {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 13px 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .card-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .card-row:last-child { margin-bottom: 0; }
+  .row-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    color: #C7C7CC;
+    width: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .row-label .mini-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    display: inline-block; flex-shrink: 0;
+  }
+
+  /* Color chips */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .chip-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    display: inline-block; flex-shrink: 0;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #8E8E93;
+    font-size: 15px;
+  }
+  .empty-icon { font-size: 36px; margin-bottom: 8px; }
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: #C7C7CC;
+    margin-top: 8px;
+    padding: 0 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">HERRENGARDEROBE</div>
+  <div class="header-title">Farbkombinationen</div>
+  <div class="header-count" id="count-label">25 Kombinationen</div>
+
+  <!-- Oberteil Filter -->
+  <div class="filter-section">
+    <div class="filter-category-label">
+      <span class="dot" style="background:#1C1C1E"></span>OBERTEIL
+    </div>
+    <div class="filter-pills" id="pills-oberteil"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Hose Filter -->
+  <div class="filter-section">
+    <div class="filter-category-label">
+      <span class="dot" style="background:#7A4728"></span>HOSE
+    </div>
+    <div class="filter-pills" id="pills-hose"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Schuhe Filter -->
+  <div class="filter-section">
+    <div class="filter-category-label">
+      <span class="dot" style="background:#888"></span>SCHUHE
+    </div>
+    <div class="filter-pills" id="pills-schuhe"></div>
+  </div>
+
+  <div class="reset-row">
+    <button class="reset-btn" onclick="resetAll()">✕ Filter zurücksetzen</button>
+  </div>
+</div>
+
+<div class="cards" id="cards"></div>
+<div class="footer">Tippe auf eine Farbe zum Filtern · mehrere Kategorien kombinierbar</div>
+
+<script>
+const COLOR_MAP = {
+  "Khaki":        { bg: "#B5A164", text: "#fff", dot: "#B5A164" },
+  "Hellblau":     { bg: "#C6DFF0", text: "#2a5a7a", dot: "#7FB3D3" },
+  "Braun":        { bg: "#7A4728", text: "#fff", dot: "#7A4728" },
+  "Schwarz":      { bg: "#1C1C1E", text: "#fff", dot: "#1C1C1E" },
+  "Beige":        { bg: "#E8D8BC", text: "#7a5c35", dot: "#C9A96E", border: true },
+  "Hellgrau":     { bg: "#D1D1D6", text: "#333", dot: "#B0B0B5" },
+  "Cremeweiß":    { bg: "#FFF5DC", text: "#8a7555", dot: "#D4C4A0", border: true },
+  "Weiß":         { bg: "#FFFFFF", text: "#555", dot: "#e0e0e0", border: true },
+  "Grau":         { bg: "#6D6D72", text: "#fff", dot: "#888" },
+  "Dunkelblau":   { bg: "#1A3A5C", text: "#fff", dot: "#1A3A5C" },
+  "Weiß/Hellgrau":{ bg: "#E8E8EE", text: "#555", dot: "#B8B8C0", border: true },
+};
+
+const combos = [
+  { oberteil: "Khaki",     hose: "Hellblau",   schuhe: null },
+  { oberteil: "Braun",     hose: "Schwarz",     schuhe: "Schwarz" },
+  { oberteil: "Beige",     hose: "Hellblau",    schuhe: "Schwarz" },
+  { oberteil: "Hellgrau",  hose: "Hellblau",    schuhe: "Schwarz" },
+  { oberteil: "Schwarz",   hose: "Schwarz",     schuhe: "Beige" },
+  { oberteil: "Cremeweiß", hose: "Braun",       schuhe: null },
+  { oberteil: "Weiß",      hose: "Grau",        schuhe: "Schwarz" },
+  { oberteil: "Hellgrau",  hose: "Schwarz",     schuhe: null },
+  { oberteil: "Hellgrau",  hose: "Hellblau",    schuhe: "Weiß/Hellgrau" },
+  { oberteil: "Hellblau",  hose: "Dunkelblau",  schuhe: "Schwarz" },
+  { oberteil: "Schwarz",   hose: "Beige",       schuhe: "Schwarz" },
+  { oberteil: "Khaki",     hose: "Braun",       schuhe: "Schwarz" },
+  { oberteil: "Schwarz",   hose: "Braun",       schuhe: "Schwarz" },
+  { oberteil: "Beige",     hose: "Braun",       schuhe: "Schwarz" },
+  { oberteil: "Beige",     hose: "Schwarz",     schuhe: "Schwarz" },
+  { oberteil: "Weiß",      hose: "Beige",       schuhe: "Schwarz" },
+  { oberteil: "Hellblau",  hose: "Beige",       schuhe: null },
+  { oberteil: "Weiß",      hose: "Hellblau",    schuhe: "Schwarz" },
+  { oberteil: "Khaki",     hose: "Beige",       schuhe: "Schwarz" },
+  { oberteil: "Hellblau",  hose: "Grau",        schuhe: "Schwarz" },
+  { oberteil: "Weiß",      hose: "Khaki",       schuhe: null },
+  { oberteil: "Braun",     hose: "Beige",       schuhe: "Schwarz" },
+  { oberteil: "Braun",     hose: "Khaki",       schuhe: "Schwarz" },
+  { oberteil: "Schwarz",   hose: "Hellblau",    schuhe: null },
+  { oberteil: "Schwarz",   hose: "Beige",       schuhe: "Beige" },
+];
+
+let activeFilters = { oberteil: null, hose: null, schuhe: null };
+
+function unique(arr) { return [...new Set(arr.filter(Boolean))].sort(); }
+
+const allOberteil = unique(combos.map(c => c.oberteil));
+const allHose     = unique(combos.map(c => c.hose));
+const allSchuhe   = unique(combos.map(c => c.schuhe));
+
+function buildChip(color) {
+  const c = COLOR_MAP[color] || { bg: "#eee", text: "#333", dot: "#ccc" };
+  return `<span class="chip" style="background:${c.bg};color:${c.text};${c.border?'border:1.5px solid #ddd':''}">`
+    + `<span class="chip-dot" style="background:${c.dot};${c.border?'border:1px solid #bbb':''}"></span>${color}</span>`;
+}
+
+function buildPill(color, category) {
+  const c = COLOR_MAP[color] || { bg: "#eee", text: "#333" };
+  const active = activeFilters[category] === color;
+  const style = active
+    ? `background:${c.bg};color:${c.text};border-color:transparent;${c.border?'border:1.5px solid #aaa':''}`
+    : '';
+  return `<button class="pill${active?' active':''}" style="${style}" onclick="toggleFilter('${category}','${color}')">${color}</button>`;
+}
+
+function renderPills() {
+  document.getElementById('pills-oberteil').innerHTML = allOberteil.map(c => buildPill(c,'oberteil')).join('');
+  document.getElementById('pills-hose').innerHTML = allHose.map(c => buildPill(c,'hose')).join('');
+  document.getElementById('pills-schuhe').innerHTML = allSchuhe.map(c => buildPill(c,'schuhe')).join('');
+}
+
+function renderCards() {
+  const f = activeFilters;
+  const filtered = combos.filter(c => {
+    if (f.oberteil && c.oberteil !== f.oberteil) return false;
+    if (f.hose     && c.hose     !== f.hose)     return false;
+    if (f.schuhe   && c.schuhe   !== f.schuhe)   return false;
+    return true;
+  });
+
+  const total = filtered.length;
+  document.getElementById('count-label').textContent =
+    total === combos.length ? `${total} Kombinationen` : `${total} von ${combos.length} Kombinationen`;
+
+  if (total === 0) {
+    document.getElementById('cards').innerHTML =
+      `<div class="empty"><div class="empty-icon">👔</div>Keine passenden Kombinationen gefunden.</div>`;
+    return;
+  }
+
+  document.getElementById('cards').innerHTML = filtered.map(combo => {
+    let rows = `
+      <div class="card-row">
+        <div class="row-label"><span class="mini-dot" style="background:#1C1C1E"></span>OBEN</div>
+        ${buildChip(combo.oberteil)}
+      </div>
+      <div class="card-row">
+        <div class="row-label"><span class="mini-dot" style="background:#7A4728"></span>HOSE</div>
+        ${buildChip(combo.hose)}
+      </div>`;
+    if (combo.schuhe) {
+      rows += `
+      <div class="card-row">
+        <div class="row-label"><span class="mini-dot" style="background:#888"></span>SCHUHE</div>
+        ${buildChip(combo.schuhe)}
+      </div>`;
+    }
+    return `<div class="card">${rows}</div>`;
+  }).join('');
+}
+
+function toggleFilter(category, color) {
+  activeFilters[category] = activeFilters[category] === color ? null : color;
+  renderPills();
+  renderCards();
+}
+
+function resetAll() {
+  activeFilters = { oberteil: null, hose: null, schuhe: null };
+  renderPills();
+  renderCards();
+}
+
+renderPills();
+renderCards();
+</script>
+</body>
+</html>
