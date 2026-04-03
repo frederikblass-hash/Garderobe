@@ -7,258 +7,73 @@
 <link rel="apple-touch-icon" href="icon.png">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
- 
-  body {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    background: #F2F2F7;
-    color: #1C1C1E;
-    min-height: 100vh;
-    padding-bottom: 40px;
-  }
- 
-  .header {
-    background: #fff;
-    border-bottom: 1px solid #E5E5EA;
-    padding: 20px 16px 14px;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
-  .header-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    color: #8E8E93;
-    margin-bottom: 3px;
-  }
-  .header-title {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.4px;
-    margin-bottom: 2px;
-  }
-  .header-count {
-    font-size: 12px;
-    color: #8E8E93;
-    margin-bottom: 14px;
-  }
- 
-  /* TAB BAR */
-  .tab-bar {
-    display: flex;
-    background: #F2F2F7;
-    border-radius: 10px;
-    padding: 2px;
-    margin-bottom: 14px;
-  }
-  .tab {
-    flex: 1;
-    text-align: center;
-    padding: 7px 4px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #8E8E93;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .tab.active {
-    background: #fff;
-    color: #1C1C1E;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-  }
- 
+  body { font-family: -apple-system, 'Helvetica Neue', sans-serif; background: #F2F2F7; color: #1C1C1E; min-height: 100vh; padding-bottom: 40px; }
+  .header { background: #fff; border-bottom: 1px solid #E5E5EA; padding: 20px 16px 14px; position: sticky; top: 0; z-index: 20; }
+  .header-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: #8E8E93; margin-bottom: 3px; }
+  .header-title { font-size: 24px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 2px; }
+  .header-count { font-size: 12px; color: #8E8E93; margin-bottom: 14px; }
+  .tab-bar { display: flex; background: #F2F2F7; border-radius: 10px; padding: 2px; margin-bottom: 14px; }
+  .tab { flex: 1; text-align: center; padding: 7px 4px; font-size: 12px; font-weight: 600; color: #8E8E93; border-radius: 8px; cursor: pointer; transition: all 0.2s; -webkit-tap-highlight-color: transparent; }
+  .tab.active { background: #fff; color: #1C1C1E; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
   .filter-section { margin-bottom: 10px; }
-  .filter-category-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: #8E8E93;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .filter-category-label .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    display: inline-block;
-  }
-  .filter-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-bottom: 4px;
-  }
-  .pill {
-    padding: 5px 11px;
-    border-radius: 20px;
-    border: 1.5px solid #E5E5EA;
-    background: #fff;
-    color: #555;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s;
-    -webkit-tap-highlight-color: transparent;
-    white-space: nowrap;
-  }
+  .filter-category-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: #8E8E93; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .filter-category-label .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+  .filter-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 4px; }
+  .pill { padding: 5px 11px; border-radius: 20px; border: 1.5px solid #E5E5EA; background: #fff; color: #555; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; -webkit-tap-highlight-color: transparent; white-space: nowrap; }
   .pill.active { border-color: transparent; }
-  .reset-btn {
-    font-size: 12px;
-    color: #007AFF;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px 0;
-    font-weight: 600;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .reset-row {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 4px;
-  }
-  .divider {
-    height: 1px;
-    background: #E5E5EA;
-    margin: 8px 0;
-  }
- 
-  .cards {
-    padding: 12px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-  }
-  .card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 13px 14px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  }
-  .card-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-  }
+  .reset-btn { font-size: 12px; color: #007AFF; background: none; border: none; cursor: pointer; padding: 4px 0; font-weight: 600; -webkit-tap-highlight-color: transparent; }
+  .reset-row { display: flex; justify-content: flex-end; margin-top: 4px; }
+  .divider { height: 1px; background: #E5E5EA; margin: 8px 0; }
+  .cards { padding: 12px 14px; display: flex; flex-direction: column; gap: 9px; }
+  .card { background: #fff; border-radius: 14px; padding: 13px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .card-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
   .card-row:last-child { margin-bottom: 0; }
-  .row-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.10em;
-    color: #C7C7CC;
-    width: 52px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .row-label .mini-dot {
-    width: 5px; height: 5px; border-radius: 50%;
-    display: inline-block; flex-shrink: 0;
-  }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-  }
-  .chip-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    display: inline-block; flex-shrink: 0;
-  }
-  .jacket-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #8E8E93;
-    margin-bottom: 8px;
-  }
-  .empty {
-    text-align: center;
-    padding: 40px 20px;
-    color: #8E8E93;
-    font-size: 15px;
-  }
+  .row-label { font-size: 10px; font-weight: 700; letter-spacing: 0.10em; color: #C7C7CC; width: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 4px; }
+  .row-label .mini-dot { width: 5px; height: 5px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .chip { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 0.01em; white-space: nowrap; }
+  .chip-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .empty { text-align: center; padding: 40px 20px; color: #8E8E93; font-size: 15px; }
   .empty-icon { font-size: 36px; margin-bottom: 8px; }
-  .footer {
-    text-align: center;
-    font-size: 11px;
-    color: #C7C7CC;
-    margin-top: 8px;
-    padding: 0 20px;
-  }
+  .footer { text-align: center; font-size: 11px; color: #C7C7CC; margin-top: 8px; padding: 0 20px; }
 </style>
 </head>
 <body>
- 
 <div class="header">
   <div class="header-eyebrow">HERRENGARDEROBE</div>
   <div class="header-title">Farbkombinationen</div>
   <div class="header-count" id="count-label">Kombinationen</div>
- 
-  <!-- Tab Bar -->
   <div class="tab-bar">
     <div class="tab active" onclick="switchTab('alle')" id="tab-alle">Alle</div>
     <div class="tab" onclick="switchTab('ohne')" id="tab-ohne">Ohne Jacke</div>
     <div class="tab" onclick="switchTab('mit')" id="tab-mit">Mit Jacke</div>
   </div>
- 
-  <!-- Filter Jacke (nur bei "Mit Jacke") -->
   <div id="filter-jacke-section" style="display:none;">
     <div class="filter-section">
-      <div class="filter-category-label">
-        <span class="dot" style="background:#5C3D2E"></span>JACKE
-      </div>
+      <div class="filter-category-label"><span class="dot" style="background:#5C3D2E"></span>JACKE</div>
       <div class="filter-pills" id="pills-jacke"></div>
     </div>
     <div class="divider"></div>
   </div>
- 
-  <!-- Oberteil Filter -->
   <div class="filter-section">
-    <div class="filter-category-label">
-      <span class="dot" style="background:#1C1C1E"></span>OBERTEIL
-    </div>
+    <div class="filter-category-label"><span class="dot" style="background:#1C1C1E"></span>OBERTEIL</div>
     <div class="filter-pills" id="pills-oberteil"></div>
   </div>
   <div class="divider"></div>
- 
-  <!-- Hose Filter -->
   <div class="filter-section">
-    <div class="filter-category-label">
-      <span class="dot" style="background:#7A4728"></span>HOSE
-    </div>
+    <div class="filter-category-label"><span class="dot" style="background:#7A4728"></span>HOSE</div>
     <div class="filter-pills" id="pills-hose"></div>
   </div>
   <div class="divider"></div>
- 
-  <!-- Schuhe Filter -->
   <div class="filter-section">
-    <div class="filter-category-label">
-      <span class="dot" style="background:#888"></span>SCHUHE
-    </div>
+    <div class="filter-category-label"><span class="dot" style="background:#888"></span>SCHUHE</div>
     <div class="filter-pills" id="pills-schuhe"></div>
   </div>
- 
   <div class="reset-row">
     <button class="reset-btn" onclick="resetAll()">✕ Filter zurücksetzen</button>
   </div>
 </div>
- 
 <div class="cards" id="cards"></div>
 <div class="footer">Tippe auf eine Farbe zum Filtern · mehrere Kategorien kombinierbar</div>
- 
 <script>
 const COLOR_MAP = {
   "Khaki":         { bg: "#B5A164", text: "#fff",    dot: "#B5A164" },
@@ -273,59 +88,56 @@ const COLOR_MAP = {
   "Dunkelblau":    { bg: "#1A3A5C", text: "#fff",    dot: "#1A3A5C" },
   "Weiß/Hellgrau": { bg: "#E8E8EE", text: "#555",    dot: "#B8B8C0", border: true },
 };
- 
-// Alle Kombinationen
-// jacke: null = kein Jacken-Outfit
 const combos = [
-  // ── OHNE JACKE (bestehende) ──────────────────────────────────
-  { jacke: null, oberteil: "Khaki",    hose: "Hellblau",  schuhe: null },
-  { jacke: null, oberteil: "Braun",    hose: "Schwarz",   schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Beige",    hose: "Hellblau",  schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Hellgrau", hose: "Hellblau",  schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Schwarz",  hose: "Schwarz",   schuhe: "Beige" },
-  { jacke: null, oberteil: "Cremeweiß",hose: "Braun",     schuhe: null },
-  { jacke: null, oberteil: "Weiß",     hose: "Grau",      schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Hellgrau", hose: "Schwarz",   schuhe: null },
-  { jacke: null, oberteil: "Hellgrau", hose: "Hellblau",  schuhe: "Weiß/Hellgrau" },
-  { jacke: null, oberteil: "Hellblau", hose: "Dunkelblau",schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Schwarz",  hose: "Beige",     schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Khaki",    hose: "Braun",     schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Schwarz",  hose: "Braun",     schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Beige",    hose: "Braun",     schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Beige",    hose: "Schwarz",   schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Weiß",     hose: "Beige",     schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Hellblau", hose: "Beige",     schuhe: null },
-  { jacke: null, oberteil: "Weiß",     hose: "Hellblau",  schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Khaki",    hose: "Beige",     schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Hellblau", hose: "Grau",      schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Weiß",     hose: "Khaki",     schuhe: null },
-  { jacke: null, oberteil: "Braun",    hose: "Beige",     schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Braun",    hose: "Khaki",     schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Schwarz",  hose: "Hellblau",  schuhe: null },
-  { jacke: null, oberteil: "Schwarz",  hose: "Beige",     schuhe: "Beige" },
- 
-  // ── OHNE JACKE (neu) ─────────────────────────────────────────
-  { jacke: null, oberteil: "Hellgrau", hose: "Schwarz",   schuhe: "Weiß/Hellgrau" },
-  { jacke: null, oberteil: "Braun",    hose: "Grau",      schuhe: "Braun" },
-  { jacke: null, oberteil: "Beige",    hose: "Hellblau",  schuhe: "Beige" },
-  { jacke: null, oberteil: "Schwarz",  hose: "Hellgrau",  schuhe: "Weiß" },
-  { jacke: null, oberteil: "Schwarz",  hose: "Grau",      schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Khaki",    hose: "Braun",     schuhe: "Braun" },
-  { jacke: null, oberteil: "Hellblau", hose: "Schwarz",   schuhe: "Schwarz" },
-  { jacke: null, oberteil: "Weiß",     hose: "Hellblau",  schuhe: "Weiß" },
- 
-  // ── MIT JACKE (neu) ──────────────────────────────────────────
-  { jacke: "Schwarz",  oberteil: "Weiß",     hose: "Schwarz",  schuhe: "Schwarz" },
-  { jacke: "Schwarz",  oberteil: "Cremeweiß",hose: "Hellblau", schuhe: "Schwarz" },
-  { jacke: "Schwarz",  oberteil: "Schwarz",  hose: "Braun",    schuhe: "Schwarz" },
-  { jacke: "Braun",    oberteil: "Schwarz",  hose: "Schwarz",  schuhe: "Schwarz" },
+  // OHNE JACKE – Original
+  { jacke: null, oberteil: "Khaki",     hose: "Hellblau",   schuhe: null },
+  { jacke: null, oberteil: "Braun",     hose: "Schwarz",    schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Beige",     hose: "Hellblau",   schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Hellgrau",  hose: "Hellblau",   schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Schwarz",   hose: "Schwarz",    schuhe: "Beige" },
+  { jacke: null, oberteil: "Cremeweiß", hose: "Braun",      schuhe: null },
+  { jacke: null, oberteil: "Weiß",      hose: "Grau",       schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Hellgrau",  hose: "Schwarz",    schuhe: null },
+  { jacke: null, oberteil: "Hellgrau",  hose: "Hellblau",   schuhe: "Weiß/Hellgrau" },
+  { jacke: null, oberteil: "Hellblau",  hose: "Dunkelblau", schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Schwarz",   hose: "Beige",      schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Khaki",     hose: "Braun",      schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Schwarz",   hose: "Braun",      schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Beige",     hose: "Braun",      schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Beige",     hose: "Schwarz",    schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Weiß",      hose: "Beige",      schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Hellblau",  hose: "Beige",      schuhe: null },
+  { jacke: null, oberteil: "Weiß",      hose: "Hellblau",   schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Khaki",     hose: "Beige",      schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Hellblau",  hose: "Grau",       schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Weiß",      hose: "Khaki",      schuhe: null },
+  { jacke: null, oberteil: "Braun",     hose: "Beige",      schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Braun",     hose: "Khaki",      schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Schwarz",   hose: "Hellblau",   schuhe: null },
+  { jacke: null, oberteil: "Schwarz",   hose: "Beige",      schuhe: "Beige" },
+  // OHNE JACKE – Erweiterung 1
+  { jacke: null, oberteil: "Hellgrau",  hose: "Schwarz",    schuhe: "Weiß/Hellgrau" },
+  { jacke: null, oberteil: "Braun",     hose: "Grau",       schuhe: "Braun" },
+  { jacke: null, oberteil: "Beige",     hose: "Hellblau",   schuhe: "Beige" },
+  { jacke: null, oberteil: "Schwarz",   hose: "Hellgrau",   schuhe: "Weiß" },
+  { jacke: null, oberteil: "Schwarz",   hose: "Grau",       schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Khaki",     hose: "Braun",      schuhe: "Braun" },
+  { jacke: null, oberteil: "Hellblau",  hose: "Schwarz",    schuhe: "Schwarz" },
+  { jacke: null, oberteil: "Weiß",      hose: "Hellblau",   schuhe: "Weiß" },
+  // MIT JACKE – Erweiterung 1
+  { jacke: "Schwarz", oberteil: "Weiß",      hose: "Schwarz",  schuhe: "Schwarz" },
+  { jacke: "Schwarz", oberteil: "Cremeweiß", hose: "Hellblau", schuhe: "Schwarz" },
+  { jacke: "Schwarz", oberteil: "Schwarz",   hose: "Braun",    schuhe: "Schwarz" },
+  { jacke: "Braun",   oberteil: "Schwarz",   hose: "Schwarz",  schuhe: "Schwarz" },
+  // MIT JACKE – Erweiterung 2
+  { jacke: "Beige",   oberteil: "Weiß",  hose: "Schwarz",  schuhe: "Schwarz" },
+  { jacke: "Beige",   oberteil: "Weiß",  hose: "Beige",    schuhe: "Weiß" },
+  { jacke: "Schwarz", oberteil: "Weiß",  hose: "Beige",    schuhe: "Schwarz" },
+  { jacke: "Beige",   oberteil: "Weiß",  hose: "Hellblau", schuhe: "Beige" },
 ];
- 
 let activeTab = 'alle';
 let activeFilters = { jacke: null, oberteil: null, hose: null, schuhe: null };
- 
 function unique(arr) { return [...new Set(arr.filter(Boolean))].sort(); }
- 
 function getVisibleCombos() {
   return combos.filter(c => {
     if (activeTab === 'ohne' && c.jacke !== null) return false;
@@ -337,88 +149,49 @@ function getVisibleCombos() {
     return true;
   });
 }
- 
 function getPillColors(category) {
-  // Show only colors relevant to current tab
-  const base = activeTab === 'ohne'
-    ? combos.filter(c => c.jacke === null)
-    : activeTab === 'mit'
-    ? combos.filter(c => c.jacke !== null)
-    : combos;
+  const base = activeTab === 'ohne' ? combos.filter(c => c.jacke === null)
+    : activeTab === 'mit' ? combos.filter(c => c.jacke !== null) : combos;
   return unique(base.map(c => c[category]));
 }
- 
 function buildChip(color) {
   if (!color) return '';
   const c = COLOR_MAP[color] || { bg: "#eee", text: "#333", dot: "#ccc" };
-  return `<span class="chip" style="background:${c.bg};color:${c.text};${c.border?'border:1.5px solid #ddd':''}">`
-    + `<span class="chip-dot" style="background:${c.dot};${c.border?'border:1px solid #bbb':''}"></span>${color}</span>`;
+  return `<span class="chip" style="background:${c.bg};color:${c.text};${c.border?'border:1.5px solid #ddd':''}"><span class="chip-dot" style="background:${c.dot};${c.border?'border:1px solid #bbb':''}"></span>${color}</span>`;
 }
- 
 function buildPill(color, category) {
   const c = COLOR_MAP[color] || { bg: "#eee", text: "#333" };
   const active = activeFilters[category] === color;
   const style = active ? `background:${c.bg};color:${c.text};border-color:transparent;${c.border?'border:1.5px solid #aaa':''}` : '';
   return `<button class="pill${active?' active':''}" style="${style}" onclick="toggleFilter('${category}','${color}')">${color}</button>`;
 }
- 
 function renderPills() {
-  const jackeColors = getPillColors('jacke');
-  const oberColors  = getPillColors('oberteil');
-  const hoseColors  = getPillColors('hose');
-  const schuheColors= getPillColors('schuhe');
- 
-  document.getElementById('pills-jacke').innerHTML    = jackeColors.map(c => buildPill(c,'jacke')).join('');
-  document.getElementById('pills-oberteil').innerHTML = oberColors.map(c => buildPill(c,'oberteil')).join('');
-  document.getElementById('pills-hose').innerHTML     = hoseColors.map(c => buildPill(c,'hose')).join('');
-  document.getElementById('pills-schuhe').innerHTML   = schuheColors.map(c => buildPill(c,'schuhe')).join('');
- 
-  document.getElementById('filter-jacke-section').style.display =
-    activeTab === 'mit' ? 'block' : 'none';
+  document.getElementById('pills-jacke').innerHTML    = getPillColors('jacke').map(c => buildPill(c,'jacke')).join('');
+  document.getElementById('pills-oberteil').innerHTML = getPillColors('oberteil').map(c => buildPill(c,'oberteil')).join('');
+  document.getElementById('pills-hose').innerHTML     = getPillColors('hose').map(c => buildPill(c,'hose')).join('');
+  document.getElementById('pills-schuhe').innerHTML   = getPillColors('schuhe').map(c => buildPill(c,'schuhe')).join('');
+  document.getElementById('filter-jacke-section').style.display = activeTab === 'mit' ? 'block' : 'none';
 }
- 
 function renderCards() {
   const filtered = getVisibleCombos();
-  const total = filtered.length;
   const all = activeTab === 'alle' ? combos.length
-    : activeTab === 'ohne' ? combos.filter(c=>c.jacke===null).length
-    : combos.filter(c=>c.jacke!==null).length;
- 
+    : activeTab === 'ohne' ? combos.filter(c => c.jacke === null).length
+    : combos.filter(c => c.jacke !== null).length;
   document.getElementById('count-label').textContent =
-    total === all ? `${total} Kombinationen` : `${total} von ${all} Kombinationen`;
- 
-  if (total === 0) {
-    document.getElementById('cards').innerHTML =
-      `<div class="empty"><div class="empty-icon">👔</div>Keine passenden Kombinationen gefunden.</div>`;
+    filtered.length === all ? `${filtered.length} Kombinationen` : `${filtered.length} von ${all} Kombinationen`;
+  if (filtered.length === 0) {
+    document.getElementById('cards').innerHTML = `<div class="empty"><div class="empty-icon">👔</div>Keine passenden Kombinationen gefunden.</div>`;
     return;
   }
- 
   document.getElementById('cards').innerHTML = filtered.map(combo => {
     let inner = '';
-    if (combo.jacke) {
-      inner += `<div class="card-row">
-        <div class="row-label"><span class="mini-dot" style="background:#5C3D2E"></span>JACKE</div>
-        ${buildChip(combo.jacke)}
-      </div>`;
-    }
-    inner += `<div class="card-row">
-      <div class="row-label"><span class="mini-dot" style="background:#1C1C1E"></span>OBEN</div>
-      ${buildChip(combo.oberteil)}
-    </div>
-    <div class="card-row">
-      <div class="row-label"><span class="mini-dot" style="background:#7A4728"></span>HOSE</div>
-      ${buildChip(combo.hose)}
-    </div>`;
-    if (combo.schuhe) {
-      inner += `<div class="card-row">
-        <div class="row-label"><span class="mini-dot" style="background:#888"></span>SCHUHE</div>
-        ${buildChip(combo.schuhe)}
-      </div>`;
-    }
+    if (combo.jacke) inner += `<div class="card-row"><div class="row-label"><span class="mini-dot" style="background:#5C3D2E"></span>JACKE</div>${buildChip(combo.jacke)}</div>`;
+    inner += `<div class="card-row"><div class="row-label"><span class="mini-dot" style="background:#1C1C1E"></span>OBEN</div>${buildChip(combo.oberteil)}</div>`;
+    inner += `<div class="card-row"><div class="row-label"><span class="mini-dot" style="background:#7A4728"></span>HOSE</div>${buildChip(combo.hose)}</div>`;
+    if (combo.schuhe) inner += `<div class="card-row"><div class="row-label"><span class="mini-dot" style="background:#888"></span>SCHUHE</div>${buildChip(combo.schuhe)}</div>`;
     return `<div class="card">${inner}</div>`;
   }).join('');
 }
- 
 function switchTab(tab) {
   activeTab = tab;
   activeFilters = { jacke: null, oberteil: null, hose: null, schuhe: null };
@@ -427,19 +200,16 @@ function switchTab(tab) {
   renderPills();
   renderCards();
 }
- 
 function toggleFilter(category, color) {
   activeFilters[category] = activeFilters[category] === color ? null : color;
   renderPills();
   renderCards();
 }
- 
 function resetAll() {
   activeFilters = { jacke: null, oberteil: null, hose: null, schuhe: null };
   renderPills();
   renderCards();
 }
- 
 renderPills();
 renderCards();
 </script>
